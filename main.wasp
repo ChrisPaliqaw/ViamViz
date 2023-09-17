@@ -9,7 +9,8 @@ app ViamViz {
   db: {
     prisma: {
       clientPreviewFeatures: ["extendedWhereUnique"]
-    }
+    },
+    system: PostgreSQL,
   },
   auth: {
     userEntity: User,
