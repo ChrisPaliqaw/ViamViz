@@ -24,21 +24,21 @@ export function AddRobot() {
       <div className='flex flex-col gap-y-4 mt-4'>
         <input
           type='text'
-          placeholder='Name'
+          placeholder='Nickname'
           className='px-1 py-2 border rounded text-lg'
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          type='text'
+          type='password'
           placeholder='Secret'
           className='px-1 py-2 border rounded text-lg'
           value={secret}
           onChange={(e) => setSecret(e.target.value)}
         />
         <input
-          type='text'
-          placeholder='URL'
+          type='password'
+          placeholder='Address'
           className='px-1 py-2 border rounded text-lg'
           value={url}
           onChange={(e) => setUrl(e.target.value)}
