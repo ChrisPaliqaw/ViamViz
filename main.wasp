@@ -1,0 +1,69 @@
+app ViamViz {
+  wasp: {
+    version: "^0.11.1"
+  },
+  title: "ViamViz",
+  client: {
+    rootComponent: import { Layout } from "@client/Layout.jsx",
+  },
+  db: {
+    prisma: {
+      clientPreviewFeatures: ["extendedWhereUnique"]
+    }
+  },
+  auth: {
+    userEntity: User,
+    methods: {
+      usernameAndPassword: {}
+    },
+    onAuthFailedRedirectTo: "/login",
+    onAuthSucceededRedirectTo: "/"
+  },
+}
+
+route LoginRoute { path: "/login", to: LoginPage }
+page LoginPage {
+  component: import Login from "@client/pages/auth/Login.jsx"
+}
+route SignupRoute { path: "/signup", to: SignupPage }
+page SignupPage {
+  component: import Signup from "@client/pages/auth/Signup.jsx"
+}
+
+entity User {=psl
+    id       Int     @id @default(autoincrement())
+    username String  @unique
+    password String
+    robots   Robot[]
+psl=}
+
+entity Robot {=psl
+    id     Int    @id @default(autoincrement())
+    name   String
+    secret String
+    url    String
+    user   User   @relation(fields: [userId], references: [id])
+    userId Int
+psl=}
+
+action createRobot {
+  fn: import { createRobot } from "@server/actions.js",
+  entities: [Robot]
+}
+
+query getRobots {
+  fn: import { getRobots } from "@server/queries.js",
+  entities: [Robot]
+}
+
+route HomeRoute { path: "/", to: HomePage }
+page HomePage {
+  component: import { Home } from "@client/pages/Home.jsx",
+  authRequired: true
+}
+
+route AddRobotRoute { path: "/add-robot", to: AddRobotPage }
+page AddRobotPage {
+  component: import { AddRobot } from "@client/pages/AddRobot.jsx",
+  authRequired: true
+}
