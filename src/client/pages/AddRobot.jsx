@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useQuery } from '@wasp/queries';
+import { Link, useHistory } from 'react-router-dom';
 import { useAction } from '@wasp/actions';
-import getRobots from '@wasp/queries/getRobots';
 import createRobot from '@wasp/actions/createRobot';
 
 export function AddRobot() {
-  const { data: robots, isLoading, error } = useQuery(getRobots);
+  const history = useHistory();
   const createRobotFn = useAction(createRobot);
   const [name, setName] = useState('');
   const [secret, setSecret] = useState('');
   const [url, setUrl] = useState('');
-
-  if (isLoading) return 'Loading...';
-  if (error) return 'Error: ' + error;
 
   const handleCreateRobot = () => {
     createRobotFn({ name, secret, url });
     setName('');
     setSecret('');
     setUrl('');
+    history.push('/');
   };
 
   return (

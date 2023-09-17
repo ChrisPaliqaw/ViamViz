@@ -12,3 +12,13 @@ export const createRobot = async (args, context) => {
     }
   });
 }
+
+export const deleteRobot = async (args, context) => {
+  if (!context.user) { throw new HttpError(401) }
+
+  if (!args.robotId) throw new HttpError(400, 'robotId is required')
+
+  return context.entities.Robot.delete({
+    where: { id: args.robotId, user: context.user }
+  });
+}

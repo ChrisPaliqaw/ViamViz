@@ -51,6 +51,11 @@ action createRobot {
   entities: [Robot]
 }
 
+action deleteRobot {
+  fn: import { deleteRobot } from "@server/actions.js",
+  entities: [Robot]
+}
+
 query getRobots {
   fn: import { getRobots } from "@server/queries.js",
   entities: [Robot]
