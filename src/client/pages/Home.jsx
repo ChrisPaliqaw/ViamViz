@@ -13,7 +13,9 @@ export function Home() {
   if (isLoading) return "Loading...";
   if (error) return "Error: " + error;
 
-  const handleDeleteRobot = (robotId) => {
+  const handleDeleteRobot = (robotId, robotName) => {
+    const isConfirm = window.confirm(`Are you sure you want to delete the connection to "${robotName}"?`)
+    if (!isConfirm) return;
     deleteRobotFn({ robotId: robotId });
   };
 
@@ -33,7 +35,7 @@ export function Home() {
               </button>
             </div>
             <div>
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {handleDeleteRobot(robot.id)}}>
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {handleDeleteRobot(robot.id, robot.name)}}>
                 Delete
               </button>
             </div>

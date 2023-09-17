@@ -20,11 +20,11 @@ export function AddRobot() {
 
   return (
     <div className='p-4'>
-      <h1 className='text-2xl font-bold'>Add Robot</h1>
+      <h1 className='text-2xl font-bold'>Add Robot Connection</h1>
       <div className='flex flex-col gap-y-4 mt-4'>
         <input
           type='text'
-          placeholder='Nickname'
+          placeholder='Robot nickname'
           className='px-1 py-2 border rounded text-lg'
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -47,7 +47,7 @@ export function AddRobot() {
           onClick={handleCreateRobot}
           className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
         >
-          Create Robot
+          Add
         </button>
         <Link
           to='/'
