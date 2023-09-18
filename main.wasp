@@ -3,6 +3,9 @@ app ViamViz {
     version: "^0.11.1"
   },
   title: "ViamViz",
+  dependencies: [
+    ("@viamrobotics/sdk", "*"),
+  ],
   client: {
     rootComponent: import { Layout } from "@client/Layout.jsx",
   },
