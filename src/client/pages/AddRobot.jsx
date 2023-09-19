@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useAction } from '@wasp/actions';
-import createRobot from '@wasp/actions/createRobot';
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { useAction } from '@wasp/actions'
+import createRobot from '@wasp/actions/createRobot'
 
 export function AddRobot() {
-  const history = useHistory();
-  const createRobotFn = useAction(createRobot);
-  const [name, setName] = useState('');
-  const [secret, setSecret] = useState('');
-  const [url, setUrl] = useState('');
+  const history = useHistory()
+  const createRobotFn = useAction(createRobot)
+  const [name, setName] = useState('')
+  const [secret, setSecret] = useState('')
+  const [url, setUrl] = useState('')
 
   const handleCreateRobot = () => {
-    createRobotFn({ name, secret, url });
-    setName('');
-    setSecret('');
-    setUrl('');
-    history.push('/');
+    createRobotFn({ name, secret, url })
+    setName('')
+    setSecret('')
+    setUrl('')
+    history.push('/')  // TODO: use navigate or redirect when Wasp upgrades to React Router v6
   };
 
   return (
