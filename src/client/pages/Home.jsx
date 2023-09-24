@@ -5,8 +5,11 @@ import { useAction } from "@wasp/actions";
 import getRobots from "@wasp/queries/getRobots";
 import deleteRobot from "@wasp/actions/deleteRobot";
 import { createRobotClient } from "@viamrobotics/sdk";
+import { Canvas } from "@react-three/fiber";
+import { Experience } from "../components/Experience/Experience";
 
 export function Home() {
+
   const deleteRobotFn = useAction(deleteRobot);
   const { data: robots, isLoading, error } = useQuery(getRobots);
 
@@ -97,14 +100,26 @@ export function Home() {
       </button>
     </div>
   ) : (
-    <div className="flex items-center justify-between  bg-gray-100 p-4 mb-4 rounded-lg">
-      Connected
-      <button
-        className="bg-red-500 hover:red-green-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handleDisconnect}
+    <>
+      <div className="flex items-center justify-between  bg-gray-100 p-4 mb-4 rounded-lg">
+        Connected
+        <button
+          className="bg-red-500 hover:red-green-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleDisconnect}
+        >
+          Disconnect
+        </button>
+      </div>
+  <div className="fixed top-1/6 left-0 w-full h-4/6 overflow-hidden" >
+      <Canvas
+        camera={{
+          fov: 60,
+          position: [-1, 1, 1],
+        }}
       >
-        Disconnect
-      </button>
-    </div>
+        <Experience />
+      </Canvas>
+      </div>
+    </>
   );
 }
