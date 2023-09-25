@@ -8,6 +8,7 @@ app ViamViz {
     ("@react-three/drei", "9.77"),
     ("@react-three/fiber", "8.13"),
     ("three", "^0.153.0"),
+    ("r3f-robot", "^0.0.5"),
   ],
   client: {
     rootComponent: import { Layout } from "@client/Layout.jsx",

@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useQuery } from "@wasp/queries";
-import { useAction } from "@wasp/actions";
-import getRobots from "@wasp/queries/getRobots";
-import deleteRobot from "@wasp/actions/deleteRobot";
-import { createRobotClient } from "@viamrobotics/sdk";
-import { Canvas } from "@react-three/fiber";
-import { Experience } from "../components/Experience/Experience";
+import { Link } from "react-router-dom"
+import { useQuery } from "@wasp/queries"
+import { useAction } from "@wasp/actions"
+import getRobots from "@wasp/queries/getRobots"
+import deleteRobot from "@wasp/actions/deleteRobot"
+import { createRobotClient } from "@viamrobotics/sdk"
+import { Canvas } from "@react-three/fiber"
+import { Experience } from "../components/Experience/Experience"
+
 
 export function Home() {
 
@@ -54,6 +55,7 @@ export function Home() {
 
   return !connecting && !robot ? (
     <div className="p-4">
+    
       {robots.map((robot) => (
         <div
           key={robot.id}
